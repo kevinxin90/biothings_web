@@ -114,7 +114,7 @@ class Application(tornado.web.Application):
             static_path=os.path.join(os.path.dirname(__file__), "static")
         )
         handlers = [
-            (r"/explorer/?", MainHandler, {'path': settings['static_path']}),
+            (r"/explorer/?", MainHandler, dict(path=settings['static_path'])),
             (r"/explorer/field/", FieldHandler),
             (r"/explorer/annotate/", AnnotateHandler),
             (r"/explorer/query/", QueryHandler),
