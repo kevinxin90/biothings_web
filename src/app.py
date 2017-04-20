@@ -10,14 +10,14 @@ import json
 import pprint
 from  tornado.escape import json_decode
 from  tornado.escape import json_encode
-
 from tornado.options import define, options
 
 from utils import field_handler, annotate_handler, query_handler, id_handler, initialize, filter_handler, relation_handler, fetchid_handler
  
 class MainHandler(tornado.web.RequestHandler):
-	def get(self):
-		self.render("index.html", messages=None)
+    @tornado.web.addslash
+    def get(self):
+        self.render("index.html", messages=None)
 
 class FieldHandler(tornado.web.RequestHandler):
 
@@ -109,15 +109,15 @@ class Application(tornado.web.Application):
 
     def __init__(self):
         handlers = [
-            (r"/", MainHandler),
-            (r"/field/", FieldHandler),
-            (r"/annotate/", AnnotateHandler),
-            (r"/query/", QueryHandler),
-            (r"/id/", IdHandler),
-            (r"/initialize/", InitializeHandler),
-            (r"/filter/", FilterHandler),
-            (r"/relation/", RelationHandler),
-            (r"/fetchid/", FetchIdHandler)
+            (r"/explorer/?", MainHandler),
+            (r"/explorer/field/", FieldHandler),
+            (r"/explorer/annotate/", AnnotateHandler),
+            (r"/explorer/query/", QueryHandler),
+            (r"/explorer/id/", IdHandler),
+            (r"/explorer/initialize/", InitializeHandler),
+            (r"/explorer/filter/", FilterHandler),
+            (r"/explorer/relation/", RelationHandler),
+            (r"/explorer/fetchid/", FetchIdHandler)
         ]
         settings = dict(
             debug=True,
@@ -128,7 +128,7 @@ class Application(tornado.web.Application):
 
 def main():
     app = Application()
-    app.listen(8877)
+    app.listen(8853)
     tornado.ioloop.IOLoop.instance().start()
 
 

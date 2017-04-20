@@ -2,7 +2,7 @@
 	"@context": {
 		"GeneDisease.geneId": {
 			"@id": "oban:has_property",
-			"@type": "http://identifiers.org/entrez_gene_id/"
+			"@type": "http://identifiers.org/hgnc/"
 		},
 		"GeneDisease.ensemblId": {
 			"@id": "oban:is_related_to_disease",
