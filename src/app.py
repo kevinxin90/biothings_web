@@ -108,11 +108,11 @@ class FetchIdHandler(tornado.web.RequestHandler):
 class Application(tornado.web.Application):
 
     def __init__(self):
-        settings = dict(
-            debug=True,
-            template_path=os.path.join(os.path.dirname(__file__), "templates"),
-            static_path=os.path.join(os.path.dirname(__file__), "static")
-        )
+        settings = {
+            'debug': True,
+            'template_path': os.path.join(os.path.dirname(__file__), "templates"),
+            'static_path': os.path.join(os.path.dirname(__file__), "static")
+        }
         handlers = [
             (r"/explorer/?", MainHandler, dict(path=settings['static_path'])),
             (r"/explorer/field/", FieldHandler),
