@@ -114,15 +114,16 @@ class Application(tornado.web.Application):
             'static_path': os.path.join(os.path.dirname(__file__), "static")
         }
         handlers = [
-            (r"/explorer/?", MainHandler, dict(path=settings['static_path'])),
-            (r"/explorer/field/", FieldHandler, dict(path=settings['static_path'])),
-            (r"/explorer/annotate/", AnnotateHandler, dict(path=settings['static_path'])),
-            (r"/explorer/query/", QueryHandler, dict(path=settings['static_path'])),
-            (r"/explorer/id/", IdHandler, dict(path=settings['static_path'])),
-            (r"/explorer/initialize/", InitializeHandler, dict(path=settings['static_path'])),
-            (r"/explorer/filter/", FilterHandler, dict(path=settings['static_path'])),
-            (r"/explorer/relation/", RelationHandler, dict(path=settings['static_path'])),
-            (r"/explorer/fetchid/", FetchIdHandler, dict(path=settings['static_path']))
+            (r"/explorer/?", MainHandler),
+            (r"/explorer/static/(.*)", tornado.web.StaticFileHandler, {'path': settings['static_path']}),
+            (r"/explorer/field/", FieldHandler),
+            (r"/explorer/annotate/", AnnotateHandler),
+            (r"/explorer/query/", QueryHandler),
+            (r"/explorer/id/", IdHandler),
+            (r"/explorer/initialize/", InitializeHandler),
+            (r"/explorer/filter/", FilterHandler),
+            (r"/explorer/relation/", RelationHandler),
+            (r"/explorer/fetchid/", FetchIdHandler)
         ]
 
         tornado.web.Application.__init__(self, handlers, **settings)
